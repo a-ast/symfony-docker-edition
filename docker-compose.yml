@@ -1,0 +1,76 @@
+#
+# Available web-interfaces/ports after "docker-compose up":
+#
+# - Solr 4.9.1    http://<docker-ip>:5050/solr
+# - phpMyAdmin    http://<docker-ip>:6060/phpmyadmin
+# - RabbitMQ      http://<docker-ip>:7070
+# - Website       http://<docker-ip>:8080
+# - xDebug(cli)   http://<docker-ip>:9000 (IDE-Key: "PHPSTORM")
+# - Varnish       http://<docker-ip>:9090
+#
+
+redis:
+  image: redis:2.8
+
+mysql5:
+  image: mysql:5.7
+  environment:
+    MYSQL_DATABASE: dev
+    MYSQL_USER: dev
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_PASSWORD: password
+
+rabbitmq:
+  image: rabbitmq:3.4-management
+  ports:
+    - "7070:15672"
+
+solr:
+  build: ./docker/solr
+  ports:
+    - "5050:8983"
+
+php5:
+  build: ./docker/php5
+  environment:
+    APP_CONTEXT: docker
+  links:
+    - mysql5:database
+    - redis:redis
+    - rabbitmq:rabbitmq
+    - solr:solr
+  privileged: true
+  volumes:
+    - ./symfony:/var/www
+    - /var/storage
+  ports:
+    - "9000:9999"
+
+nginx:
+  build: ./docker/nginx
+  links:
+    - php5:php5
+  volumes_from:
+    - php5
+  ports:
+    - "8080:80"
+
+varnish:
+  image: million12/varnish
+  links:
+    - nginx:backend-host
+  volumes_from:
+    - php5
+  ports:
+    - "9090:80"
+  environment:
+    VCL_CONFIG: /var/www/app/config/varnish.vcl
+    CACHE_SIZE: 256m
+    VARNISHD_PARAMS: -p default_ttl=3600 -p default_grace=3600
+
+phpmyadmin:
+  build: ./docker/phpmyadmin
+  links:
+    - mysql5:db
+  ports:
+    - "6060:80"

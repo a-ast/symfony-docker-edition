@@ -1,0 +1,7 @@
+parameters:
+    bsc_docker_storage_class: "Basecom\Bundle\DockerBundle\Service\Storage"
+
+services:
+    bsc_docker_storage:
+        class: "%bsc_docker_storage_class%"
+        arguments: ["@kernel"]
