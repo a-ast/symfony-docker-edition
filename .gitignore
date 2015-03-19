@@ -1,0 +1,16 @@
+.idea
+/symfony/web/bundles
+/symfony/web/uploads
+/symfony/storage
+/symfony/app/bootstrap.php.cache
+/symfony/app/cache/*
+/symfony/app/config/parameters.yml
+/symfony/app/logs/*
+!symfony/app/cache/.gitkeep
+!symfony/app/logs/.gitkeep
+/symfony/build/
+/symfony/vendor/
+/symfony/bin/
+/symfony/web/css
+/symfony/web/js
+.htaccess
