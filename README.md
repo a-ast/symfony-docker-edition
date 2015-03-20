@@ -5,8 +5,11 @@ This project is released under the [**MIT**][0]-license and contains an modified
 ***
 
     ATTENTION
-    This project is in a very very early state. Use this project for local development or testing purposes only.
-    If you develop on an native Linux workstation, you shouldn't use this edition anyways (as some of this modifications may affect BC and vendor compatibility of Symfony)!
+    This project is in a very very early state. Use this project for local development 
+    or testing purposes only.
+    
+    If you develop on an native Linux workstation, you shouldn't use this edition 
+    anyways (as some of this modifications may affect BC and vendor compatibility of Symfony)!
 
 ***
 

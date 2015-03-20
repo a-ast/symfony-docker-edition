@@ -1,7 +1,7 @@
 
 # login
 
-This command opens a bash shell within the `php5-fpm` container. Please note that you will be logged in as `www-data` ant NOT `root`.
+This command opens a bash shell within the `php5-fpm` container. Please note that you will be logged in as `www-data` and NOT `root`.
 
 ## Options
 
@@ -29,7 +29,8 @@ By default you will be logged in as `www-data` but you can change this with the 
     # this will log you in into instance '1' with the user 'root'
     ./login 1 root
 
-    # this will log you in into instance '27' with the user 'fancy-user' (you can only use existing user, so this example will fail)
+    # this will log you in into instance '27' with the user 'fancy-user'
+    # (as you can only use existing user, so this example will fail)
     ./login 27 fancy-user
 
 ```
