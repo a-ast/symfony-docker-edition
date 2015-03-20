@@ -54,6 +54,8 @@ nginx:
     - php5
   ports:
     - "8080:80"
+  environment:
+    NGINX_APP_ENV: prod
 
 varnish:
   image: million12/varnish
