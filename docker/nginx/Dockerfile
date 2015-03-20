@@ -18,13 +18,19 @@ RUN chmod +x /etc/nginx/entrypoint.sh
 # use the given conf-files
 #
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY default.conf /etc/nginx/conf.d/default.conf.tpl
+COPY default.dev.conf /etc/nginx/conf.d/default.dev.conf.tpl
+COPY default.prod.conf /etc/nginx/conf.d/default.prod.conf.tpl
 
 #
 # port-configuration
 #
 EXPOSE 80
 EXPOSE 443
+
+#
+#
+#
+ENV NGINX_APP_ENV="dev"
 
 #
 # default entrypoint

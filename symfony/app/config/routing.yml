@@ -1,0 +1,4 @@
+_docker:
+    resource: "@BasecomDockerBundle/Controller/"
+    type: annotation
+    prefix:   /

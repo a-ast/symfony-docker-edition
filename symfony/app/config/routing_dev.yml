@@ -14,11 +14,6 @@ _errors:
     resource: "@TwigBundle/Resources/config/routing/errors.xml"
     prefix:   /_error
 
-_docker:
-    resource: "@BasecomDockerBundle/Controller/"
-    type: annotation
-    prefix:   /
-
 _main:
     resource: routing.yml
 
