@@ -11,7 +11,7 @@ As you might know, boot2docker will create a VirtualBox VM running the Docker da
 If you start a container with an volume (e.g. your project sourcecode) it will be mounted into the boot2docker VM and from the VM into the containers filesystem.
 And exactly this is the problem, as only the root user within the container is allowed to write, modify oder delete files in shared volumes of the container.
 
-Even grating the `--privileged` flag to the container won't help as the source of the problem is the boot2docker VM and not the container itself.
+Even granting the `--privileged` flag to the container won't help as the source of the problem is the boot2docker VM and not the container itself.
 
 
 ### How does this issue affect a Symfony app?
@@ -19,7 +19,7 @@ Even grating the `--privileged` flag to the container won't help as the source o
 This issue affects at least this components and features (specific vendor functions not included):
 
 * All file-based cache operations such as `php app/console cache:clear`
-* Asset installation '`php app/console assets:install`
+* Asset installation `php app/console assets:install`
 * Assetic operations `php app/console assetic:dump` or `php app/console assetic:watch`
 * Uploads (e.g. into `web/uploads` etc.)
 * Logging into `app/logs`
