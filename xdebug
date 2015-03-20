@@ -1,0 +1,36 @@
+#!/bin/bash
+
+DO="$1"
+MODE="$2"
+INSTANCE="$3"
+
+# normalize the mode value
+if [ "" == "$MODE" ]; then
+    MODE="all"
+fi
+
+# normalize the instance value
+if [ "" == "$INSTANCE" ]; then
+    INSTANCE="1"
+fi
+
+# execute the command within the container
+function executeCmd {
+    docker exec -it ${PWD##*/}"_php5_"$1 /bin/bash -c "sudo -u root TERM=\"xterm\" APP_CONTEXT=\"docker\" /xdebug_switch.sh $2 $3"
+}
+
+# enable xdebug
+if [ "on" == "$DO" ]; then
+    executeCmd "$INSTANCE" "$DO" "$MODE"
+    exit 0
+fi
+
+# disable xdebug
+if [ "off" == "$DO" ]; then
+    executeCmd "$INSTANCE" "$DO" "$MODE"
+    exit 0
+fi
+
+# error
+echo; echo "Unknown action '$DO' (available actions: on/off)"; echo;
+exit 1

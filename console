@@ -1,0 +1,45 @@
+#!/bin/bash
+
+function fixLocalRights {
+    echo; echo "Fixing local rights ...";
+    chmod -R 0775 ./symfony
+    echo "Done"; echo;
+}
+
+# get the instance
+if [ "" == "$INSTANCE" ]; then
+    INSTANCE="1"
+fi
+
+# get the user
+if [ "" == "$LOGIN_USER" ]; then
+    LOGIN_USER="www-data"
+fi
+
+# get the command path
+if [ "" == "$CMDBASE" ]; then
+    CMDBASE="/var/www/app/console"
+fi
+
+# special asset fix command?
+if [ "assets:install" == "$1" ] || [ "assetic:dump" == "$1" ]; then
+    CMDBASE="/assets.sh"
+    ARGUMENTS="fix"
+    fixLocalRights
+fi
+
+# fix rights first
+if [ "assetic:watch" == "$1" ]; then
+    fixLocalRights
+fi
+
+# get / collect arguments to pass by
+if [ "" == "$ARGUMENTS" ]; then
+    ARGUMENTS=""
+    for var in "$@"; do
+        ARGUMENTS="$ARGUMENTS $var"
+    done
+fi
+
+# pass the arguments to the symfony console
+docker exec -it ${PWD##*/}"_php5_"$INSTANCE /bin/bash -c "cd /var/www && sudo -u $LOGIN_USER TERM=\"xterm\" APP_CONTEXT=\"docker\" $CMDBASE $ARGUMENTS"

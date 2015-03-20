@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Symfony DockerBundle{% endblock title %}
+
+{% block body %}
+    <div class="container center-block text-center">
+        <h1>Docker rulez!</h1>
+        <img id="whale" src="{{ asset('bundles/basecomdocker/img/docker-whale-home-logo.png') }}" alt="Docker"/>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/basecomdocker/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/basecomdocker/css/bootstrap-theme.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/basecomdocker/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/basecomdocker/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/basecomdocker/js/jqfloat.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $whale = $('#whale');
+            $whale.on('click', function (evt) {
+                alert('Nope' + (evt.shiftKey ? ' Alex,\n-->' : ',') + ' this is NOT the "fail whale"');
+            });
+            setTimeout(function () {
+                $whale.jqFloat({
+                    width: 5,
+                    height: 10,
+                    speed: 800
+                });
+            }, 1);
+        });
+    </script>
+{% endblock %}
