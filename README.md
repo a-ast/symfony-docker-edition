@@ -9,7 +9,7 @@ This project is released under the [**MIT**][0]-license and contains an modified
     or testing purposes only.
     
     If you develop on an native Linux workstation, you shouldn't use this edition 
-    anyways (as some of this modifications may affect BC and vendor compatibility of Symfony)!
+    anyways (as some of this modifications may affect BC and vendor compatibility)!
 
 ***
 
