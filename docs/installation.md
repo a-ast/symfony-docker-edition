@@ -1,6 +1,6 @@
 # Installation
 
-*I asume that you properly installed `docker` (min. 1.5), `boot2docker` and `docker-comopose` on your host system.*
+*I asume that you properly installed `docker` (min. 1.5), `boot2docker` and `docker-compose` on your host system.*
 
 
 The installation is very simple:
